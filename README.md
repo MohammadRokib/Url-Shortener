@@ -33,6 +33,7 @@
 * C#
 * HTML
 * CSS
+* SQL Server
 * ASP .NET Core MVC
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
