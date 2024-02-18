@@ -1,0 +1,37 @@
+﻿@model UrlManager
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form method="post">
+    <div class="mb-3">
+        <input asp-for="Url" class="form-control" placeholder="Enter a Long URL" />
+        @* <span asp-validation-for="Url" class="text-danger"></span> *@
+    </div>
+
+    <div class="mb-3">
+        @if (!string.IsNullOrEmpty(Model.ShortUrl)) {
+            <label asp-for="ShortUrl"></label>
+            <div class="input-group">
+                <input asp-for="ShortUrl" id="shortUrlInput" class="form-control" value="@Model.ShortUrl" />
+                <button type="button" class="btn btn-success" onclick="copyToClipboard()">
+                    <i class="bi bi-copy"></i>
+                </button>
+            </div>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-dark btn-outline-light">Shorten URL</button>
+
+    @if (!string.IsNullOrEmpty(Model.ShortUrl)) {
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary ms-2" style="width:140px">Try again</a>
+    }
+</form>
+
+<script>
+    function copyToClipboard() {
+        var input = document.getElementById("shortUrlInput");
+        input.select();
+        document.execCommand("copy");
+    }
+</script>
